@@ -1,11 +1,12 @@
 
+
 import React, { Component } from 'react';
 import { Row, Column } from "simple-flexbox";
 import { Button, Select, MenuItem, Divider } from '@material-ui/core';
 import { textAlign } from '@material-ui/system';
 
 
-class TextProperties extends Component{
+class TextFieldProperties extends Component{
 
     constructor(props){
         super(props)
@@ -13,7 +14,7 @@ class TextProperties extends Component{
             styles:{
 
             },
-            text: "HEADING",
+            placeholder: "Sample",
             ...this.props.properties
         }
     }
@@ -85,14 +86,30 @@ class TextProperties extends Component{
                 </Row>
                 <Row style={{paddingLeft: 16}}>
                     <Column>
-                        <h5 style={{ margin: 0}}>Text</h5>
+                        <h5 style={{ margin: 0}}>Property name</h5>
                     </Column>
                 </Row>
                 <Row style={{paddingLeft: 16}}>
                     <Column>
                         <input type="text" onChange={(e)=>{
                             this.setState({
-                                text: e.target.value
+                                stateProperty: e.target.value
+                            },()=>{
+                                this.props.applyChangs(this.state)
+                            })
+                        }}/>
+                    </Column>
+                </Row>
+                <Row style={{paddingLeft: 16}}>
+                    <Column>
+                        <h5 style={{ margin: 0}}>Placeholder</h5>
+                    </Column>
+                </Row>
+                <Row style={{paddingLeft: 16}}>
+                    <Column>
+                        <input type="text" onChange={(e)=>{
+                            this.setState({
+                                placeholder: e.target.value
                             },()=>{
                                 this.props.applyChangs(this.state)
                             })
@@ -315,4 +332,4 @@ class TextProperties extends Component{
     }
 }
 
-export default TextProperties;
+export default TextFieldProperties;

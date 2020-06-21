@@ -27,7 +27,7 @@ class OptionList extends React.Component{
             }}>
                 {
                    Array.apply(null, { length: this.state.menu }).map((e, i) => (
-                    <Column data-name="Column" data-identifier={Math.random()} style={{padding:8, border:"1px solid black", backgroundColor:"white", width:"100%"}} key={i}>
+                    <Column data-name="Column" data-identifier={Math.random()} style={{padding:8, border:"1px solid black", backgroundColor:"white", width:"100%", borderBottom: "15px solid #080d56"}} key={i}>
                        COL
                     </Column>
                   ))

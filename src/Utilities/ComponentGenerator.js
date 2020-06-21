@@ -6,10 +6,13 @@ import { Button, TextField } from "@material-ui/core";
 var beautify = require('js-beautify').js_beautify;
 var pretty = require('pretty');
 
+let stateValues = {}
+
 class Componentgenerator{
 
     static generateComponentString(elements, type, name){
-        let str = `<React.Fragment>${Componentgenerator.generateCompnentString(elements.child)}</React.Fragment>`;
+        stateValues = {}
+        let str = `<React.Fragment>${Componentgenerator.generateCompnentString(elements.child, type)}</React.Fragment>`;
         if(type==="class"){
             Componentgenerator.generateClassComponent(str, name || "SampleComponent")
         }else{
@@ -17,23 +20,37 @@ class Componentgenerator{
         }
     }
 
-    static generateProps(properties){
+    static generateProps(properties, type){
         let sample = [];
         Object.keys(properties||{}).forEach((key)=>{
+            if(key==="stateProperty"){
+                if(type==="class"){                    
+                    sample.push(`${key}={this.state.${properties[key]}}`)
+                    sample.push(`onChange={(e)=>{this.setState({${properties[key]}: e.target.value})}}`)
+                }
+                if(type==="functional"){
+                    sample.push(`${key}={state.${properties[key]}}`)
+                    sample.push(`onChange={(e)=>{setState({...state, ${properties[key]}: e.target.value})}}`)
+                }
+                stateValues = {
+                    ...stateValues,
+                    [properties[key]]: ""
+                }
+            }
             if(key === "text" || key === "styles") return
             sample.push(`${key}={"${properties[key]}"}`)
         })
         return `style={${JSON.stringify(properties.styles || {})}} ${sample.join(" ")}`
     }
     
-    static generateCompnentString(child=[]){
+    static generateCompnentString(child=[], type){
         return child.map(item=>{
             if(item.child.length > 0){
                 return `<${item.name}>
-                    ${Componentgenerator.generateCompnentString(item.child)}
+                    ${Componentgenerator.generateCompnentString(item.child, type)}
                 </${item.name}>`
             }
-            return `<${item.name} ${Componentgenerator.generateProps(item.properties)}>
+            return `<${item.name} ${Componentgenerator.generateProps(item.properties, type)}>
                 ${item.properties.text || ""}
             </${item.name}>`
         })
@@ -43,6 +60,9 @@ class Componentgenerator{
     static generateClassComponent(componentData, componentName){
         console.log(componentData, componentName)
         let componentString = `Class ${componentName} extends React.Component{
+            constructor(props){
+                state = ${JSON.stringify(stateValues)}
+            }
             render(){
                 return ${componentData}
             }
@@ -59,6 +79,7 @@ class Componentgenerator{
 
     static generateFunctionalComponent(componentData, componentName){
         let componentString = `const ${componentName} = (props)=>{
+            const [state, setState] =useState(${JSON.stringify(stateValues)});
             return ${componentData}
         }
         export {${componentName}}`;

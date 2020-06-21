@@ -3,6 +3,7 @@ import ButtonInfo from './ObjectPropertiesPartials/ButtonInfo';
 import TextProperties from './ObjectPropertiesPartials/TextProperties';
 import ColumnProperties from './ObjectPropertiesPartials/ColumnProperties';
 import ImageProperties from './ObjectPropertiesPartials/ImageProperties';
+import TextFieldProperties from './ObjectPropertiesPartials/TextFieldProperties';
 
 
 const ComponentWrapper = {
@@ -10,7 +11,7 @@ const ComponentWrapper = {
     p: TextProperties,
     Column: ColumnProperties,
     Row: ColumnProperties,
-    TextField: TextProperties,
+    TextField: TextFieldProperties,
     img: ImageProperties
 }
 

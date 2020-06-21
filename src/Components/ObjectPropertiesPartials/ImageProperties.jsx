@@ -13,7 +13,8 @@ class ImageProperties extends Component{
             styles:{
 
             },
-            text: "BUTTON",
+            text: "",
+            src:"https://picsum.photos/200",
             maximumWidth:"100%",
             ...this.props.properties
         }

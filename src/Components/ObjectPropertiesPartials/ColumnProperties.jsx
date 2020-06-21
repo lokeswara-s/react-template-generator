@@ -25,7 +25,21 @@ class ColumnProperties extends Component{
                 <Row style={{padding: 16}}>
                     <h5 style={{color: "white", margin: 0}}>Properties</h5>
                 </Row>
-                
+                <Row style={{paddingLeft: 16}}>
+                    <Column>
+                    <b align="left" style={{padding:"0px",fontSize:"15px"}}>Border</b> <input value={this.state.maximumWidth} type="checkbox" onChange={(e)=>{
+                                this.setState({
+                                        styles:{
+                                            ...this.state.styles,
+                                            border: (e.target.checked) ? "1px solid blue":"unset"
+                                        },
+                                        maximumWidth: e.target.checked
+                                    },()=>{
+                                        this.props.applyChangs(this.state)
+                                })
+                            }}/>
+                    </Column>
+                </Row>
                 <Row>
                     <Column>
                         <div style={{padding:"16px"}}>

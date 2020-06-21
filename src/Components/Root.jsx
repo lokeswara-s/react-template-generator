@@ -21,7 +21,7 @@ import first from '../images/fisrt.jpg'
 import second from '../images/second.jpg'
 import ReactDOM from 'react-dom';
 import Componentgenerator from "../Utilities/ComponentGenerator";
-import SampleComponent from "./BaseComponents/SampleComponentTwo";
+import {SampleComponent} from "./BaseComponents/SampleComponentTwo";
  const BASE_ELEMENT_LIST = {
   BUTTON: TGBaseButton,
   ROW: TGBBaseRow,
@@ -141,11 +141,9 @@ class Root extends Component {
     return (
       <React.Fragment>
         <Row>
-          {/*<AppBar position="static">
-            <Toolbar>
-             
-            </Toolbar>
-            </AppBar>*/}
+        <Column style={{width: "450px"}}>
+          {/* <SampleComponent /> */}
+        </Column>
         </Row>
         <Row style={{ height: "inherit", backgroundColor: "#5c5c5c" }}>
           <Column
