@@ -1,4 +1,4 @@
-const baseText = `import React from 'react';
+const baseText = `import React,{useState} from 'react';
 import {Row, Column} from 'simple-flexbox';
 import { Button, TextField } from "@material-ui/core";
 

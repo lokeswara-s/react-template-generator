@@ -36,7 +36,7 @@ class ImageProperties extends Component{
                                             src: e.target.value
                                         },()=>{
                                             this.props.applyChangs(this.state)
-                                    })
+                                        })
                                 }}/>
                         </div>
                     </Column>
