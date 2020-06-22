@@ -13,6 +13,7 @@ class ColumnProperties extends Component{
 
             },
             text: "Column",
+            flex:"1",
             maximumWidth:"100%",
             ...this.props.properties
         }

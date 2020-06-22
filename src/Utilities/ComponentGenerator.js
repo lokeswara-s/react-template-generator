@@ -89,11 +89,20 @@ class Componentgenerator{
         console.log(finalText)
         let formatted = pretty(finalText, { indent_size: 2 });
         console.log(formatted)
-        Componentgenerator.downloadFile(finalText)
+        Componentgenerator.downloadFile(formatted)
     }
 
     static downloadFile(filedata){
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(filedata));
+        element.setAttribute('download', "Component.txt");
 
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
     }
 
 }

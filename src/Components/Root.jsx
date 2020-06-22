@@ -108,7 +108,7 @@ class Root extends Component {
  }
 
  handleCodeDownload=()=>{
-   Componentgenerator.generateComponentString(this.state.reactChild, this.state.componentType)
+   Componentgenerator.generateComponentString(this.state.reactChild, this.state.componentType, this.state.componentName)
  }
 
  handleBaseElement=(ref)=>{
@@ -216,7 +216,11 @@ class Root extends Component {
             <div style={{padding:16}}>
             <FormLabel style={{textAlign: "left"}} component="legend">Component Name</FormLabel>
 
-            <TextField placeholder="Example" fullWidth={true}/>
+            <TextField placeholder="Example" value={this.state.componentName} onChange={(e)=>{
+              this.setState({
+                componentName: e.target.value
+              })
+            }} fullWidth={true}/>
             </div>
             <div style={{padding:16}}>
             <FormLabel style={{textAlign: "left"}} component="legend">Component Type</FormLabel>
